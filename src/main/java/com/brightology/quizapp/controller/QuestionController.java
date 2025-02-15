@@ -3,6 +3,7 @@ package com.brightology.quizapp.controller;
 import com.brightology.quizapp.model.Question;
 import com.brightology.quizapp.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class QuestionController {
     QuestionService questionService;
 
     @GetMapping("/allquestions")
-    public List<Question> getAllQuestion(){
+    public ResponseEntity<List<Question>> getAllQuestion(){
         return questionService.getAllQuestions();
     }
 
@@ -31,7 +32,7 @@ public class QuestionController {
     }
 
     @PostMapping("/addquestion")
-    public String addQuestion(@RequestBody Question question){
+    public ResponseEntity<String> addQuestion(@RequestBody Question question){
         return questionService.addQuestion(question);
     }
 
