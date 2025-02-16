@@ -2,6 +2,7 @@ package com.brightology.quizapp.controller;
 
 import com.brightology.quizapp.model.Question;
 import com.brightology.quizapp.model.QuestionWrapper;
+import com.brightology.quizapp.model.Response;
 import com.brightology.quizapp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,11 @@ public class QuizController {
     @GetMapping("/getquiz/{id}")
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(@PathVariable Integer id){
         return quizService.getQuizQuestions(id);
+    }
+
+    @PostMapping("/submitquiz/{id}")
+    public ResponseEntity<Integer> submitQuiz(@PathVariable Integer id, @RequestBody List<Response> response){
+        return quizService.calculateResult(id, response);
 
     }
 }
